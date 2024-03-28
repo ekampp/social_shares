@@ -7,13 +7,8 @@ module SocialShares
         id: checked_url,
         fields: 'share'
       })
-      json_response = JSON.parse(response)
-
-      if json_response['share']
-        json_response['share']['share_count'] || 0
-      else
-        0
-      end
+      
+      JSON.parse(response).fetch('share', {}).fetch('share_count', 0)
     end
   end
 end
